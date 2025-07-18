@@ -1,0 +1,31 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    username: user
+    password: pass
+  jpa:
+    hibernate:
+      ddl-auto: update
+# URL of auth-service for Feign
+auth:
+  service:
+    url: http://localhost:8080
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  packages-to-scan: com.commerce.product.controller
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://service-registry:8761/eureka
+  instance:
+    hostname: product-service
+    prefer-ip-address: false

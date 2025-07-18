@@ -1,0 +1,42 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    username: user
+    password: pass
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
+auth:
+  service:
+    url: ${AUTH_SERVICE_URL:http://auth-service:8080}
+
+product:
+  service:
+    url: ${PRODUCT_SERVICE_URL:http://product-service:8082}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  packages-to-scan: com.commerce.orders.controller
+
+
+jwt:
+  secret: ChangeThisSecretToAStrongOne1234
+  expiration: 86400000
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://service-registry:8761/eureka
+  instance:
+    hostname: order-service
+    prefer-ip-address: false
