@@ -56,7 +56,7 @@ public class AuthController {
             summary = "Register new user",
             description = "Creates a new user account with the provided credentials"
     )
-    @ApiResponse(responseCode = "201", description = "User successfully registered")
+    @ApiResponse(responseCode = "200", description = "User successfully registered")
     @ApiResponse(responseCode = "400", description = "Invalid request body (validation errors)")
     @ApiResponse(responseCode = "403", description = "Invalid registration data (e.g., weak password)")
     @ApiResponse(responseCode = "409", description = "Conflict - Username or email already exists")

@@ -137,7 +137,7 @@ class OrderServiceImplTest {
         when(orderRepository.save(any(OrderDAO.class))).thenReturn(testOrder);
 
         // Act
-        OrderDAO result = orderService.checkout(1L, bearerToken);
+        OrderResponseDTO result = orderService.checkout(1L, bearerToken);
 
         // Assert
         assertNotNull(result);

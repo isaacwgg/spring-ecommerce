@@ -88,7 +88,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDAO checkout(Long orderId, String bearerToken) {
+    public OrderResponseDTO checkout(Long orderId, String bearerToken) {
         OrderDAO order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new ServiceException("Order not found"));
 
@@ -100,8 +100,13 @@ public class OrderServiceImpl implements OrderService {
         updateStockQuantity(bearerToken, order);
         order.setStatus(OrderStatus.PAID);
         log.info("Order {} checked out successfully with {} items", orderId, order.getOrderItems().size());
-
-        return orderRepository.save(order);
+        //return orderRepository.save(order);
+        OrderDAO savedOrder = orderRepository.save(order);
+        OrderResponseDTO response = new OrderResponseDTO();
+        response.setId(savedOrder.getId());
+        response.setCustomerId(savedOrder.getCustomerId());
+        response.setStatus(savedOrder.getStatus());
+        return response;
     }
 
     private void loadAndValidateProductAvailability(String bearerToken, OrderDAO order) {
@@ -121,8 +126,6 @@ public class OrderServiceImpl implements OrderService {
         // Create a map of product ID to Product for easy access
         Map<Long, ProductResponseDTO> productMap = products.stream()
                 .collect(Collectors.toMap(ProductResponseDTO::getId, product -> product));
-
-        // Validate stock for all items using the product map
         // Validate stock for all items using the product map
         List<String> validationErrors = new ArrayList<>();
 

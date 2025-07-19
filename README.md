@@ -12,6 +12,8 @@ This project is a modularized Spring Boot application consisting of three core m
 along
 with a `Service Registry` and a Common module shared across all services.
 
+### [Google Drive Link to the screen recording video for your quick reference](https://drive.google.com/drive/folders/18rccEpw4m80JAQDaTNYqzcZ1hIW8JzZb)
+
 ![latest-design.png](..%2F..%2F..%2F..%2FDownloads%2Flatest-design.png)
 
 The system follows a microservices architecture with:

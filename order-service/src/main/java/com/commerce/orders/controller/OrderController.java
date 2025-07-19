@@ -82,11 +82,12 @@ public class OrderController {
     @ApiResponse(responseCode = "200", description = "Order checked out successfully")
     @ApiResponse(responseCode = "400", description = "Insufficient stock or invalid order")
     @PostMapping("/{id}/checkout")
-    public ResponseEntity<OrderDAO> checkout(
+    public ResponseEntity<OrderResponseDTO> checkout(
             @PathVariable Long id,
+            @Parameter(hidden = true)
             @RequestHeader("Authorization") String bearerToken) {
         try {
-            OrderDAO checkedOutOrder = orderService.checkout(id, bearerToken);
+            OrderResponseDTO checkedOutOrder = orderService.checkout(id, bearerToken);
             return ResponseEntity.ok(checkedOutOrder);
         } catch (ServiceException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

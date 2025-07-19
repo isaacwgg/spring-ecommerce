@@ -58,7 +58,8 @@ public class ProductController {
     }
 
     @ApiResponse(responseCode = "200", description = "Product found")
-    @GetMapping("/by-ids")
+    /*@GetMapping("/by-ids")*/
+    @PostMapping("/by-ids")  // Changed from @GetMapping
     public ResponseEntity<List<ProductResponseDTO>> get(@RequestBody IdsDTO ids) {
         return productService.findProducts(ids);
     }

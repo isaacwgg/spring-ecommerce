@@ -11,18 +11,20 @@ import java.util.List;
 
 @FeignClient(name = "product-service", url = "${product.service.url:}")
 public interface ProductClient {
-  @GetMapping("/api/products/{id}")
-  ProductDto getById(@PathVariable Long id, @RequestHeader("Authorization") String bearerToken);
-  
-  @GetMapping("/api/products/by-ids")
-  List<ProductResponseDTO> getByProductIds(@RequestBody IdsDTO idsDTO, @RequestHeader("Authorization") String bearerToken);
-  
-  @PostMapping("/api/products/{id}/decrease-stock")
-  ProductDto decreaseStock(@PathVariable("id") Long productId, @RequestParam("quantity") int quantity, @RequestHeader("Authorization") String token);
-  
-  @PostMapping("/api/products/{id}/increase-stock")
-  ProductDto increaseStock(@PathVariable("id") Long productId, @RequestParam("quantity") int quantity, @RequestHeader("Authorization") String token);
-  
-  @PostMapping("/api/products/batch/decrease-stock")
-  List<ProductDto> batchDecreaseStock(@RequestBody StockUpdateBatchDTO batchDTO, @RequestHeader("Authorization") String token);
+    @GetMapping("/api/products/{id}")
+    ProductDto getById(@PathVariable Long id, @RequestHeader("Authorization") String bearerToken);
+
+    /*@GetMapping("/api/products/by-ids")*/
+    @PostMapping("/api/products/by-ids")
+    // Changed from @GetMapping
+    List<ProductResponseDTO> getByProductIds(@RequestBody IdsDTO idsDTO, @RequestHeader("Authorization") String bearerToken);
+
+    @PostMapping("/api/products/{id}/decrease-stock")
+    ProductDto decreaseStock(@PathVariable("id") Long productId, @RequestParam("quantity") int quantity, @RequestHeader("Authorization") String token);
+
+    @PostMapping("/api/products/{id}/increase-stock")
+    ProductDto increaseStock(@PathVariable("id") Long productId, @RequestParam("quantity") int quantity, @RequestHeader("Authorization") String token);
+
+    @PostMapping("/api/products/batch/decrease-stock")
+    List<ProductDto> batchDecreaseStock(@RequestBody StockUpdateBatchDTO batchDTO, @RequestHeader("Authorization") String token);
 }
