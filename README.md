@@ -40,9 +40,12 @@ Prerequisites
 1. Clone the Repository
 
       ```bash
-      git clone <repository-url>
-      cd <project-directory>
+      git clone <https://github.com/isaacwgg/spring-ecommerce>
+      cd <spring-ecommerce>
       ```
+
+### [Clone this HTTP Repository](https://github.com/isaacwgg/spring-ecommerce.git)
+
 2. Make the running script executable and run it:
 
       ```bash
@@ -105,7 +108,7 @@ All services include Prometheus metrics endpoints:
 
 To stop all services:
 
-``
-docker-compose down
-``
+  ```bash
+      docker-compose down
+   ```
 
